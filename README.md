@@ -59,3 +59,8 @@ Windows 下也可以双击 `启动求职台.cmd`。
 - 不自动海投
 - AI 输出仅作为面试练习和内容组织参考
 - 招聘平台页面结构变化可能导致采集或跳转失效
+## Android APK
+
+GitHub Actions 会自动构建 Android 安装包，构建完成后可在 Releases 页面下载：
+
+https://github.com/xuningan/zhitu-career-copilot/releases
