@@ -1,0 +1,88 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/android.yml"
+      - "mobile/capacitor/**"
+      - "index.html"
+      - "app.js"
+      - "engine.js"
+      - "styles.css"
+      - "manifest.webmanifest"
+      - "sw.js"
+      - "assets/**"
+      - "采集书签.html"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Prepare web assets
+        run: |
+          mkdir -p mobile/capacitor/www/assets
+          cp index.html app.js engine.js styles.css manifest.webmanifest sw.js 采集书签.html mobile/capacitor/www/
+          cp -r assets/. mobile/capacitor/www/assets/
+
+      - name: Accept Android SDK licenses
+        run: yes | sdkmanager --licenses >/dev/null || true
+
+      - name: Install dependencies
+        working-directory: mobile/capacitor
+        run: npm install
+
+      - name: Add Android platform
+        working-directory: mobile/capacitor
+        run: npx cap add android
+
+      - name: Sync web assets
+        working-directory: mobile/capacitor
+        run: npx cap sync android
+
+      - name: Build debug APK
+        working-directory: mobile/capacitor/android
+        run: ./gradlew assembleDebug
+
+      - name: Prepare release APK
+        run: cp mobile/capacitor/android/app/build/outputs/apk/debug/app-debug.apk zhitu-career-copilot-android.apk
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zhitu-career-copilot-android
+          path: zhitu-career-copilot-android.apk
+
+      - name: Publish APK release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: android-v0.3.0
+          name: 职途 Android v0.3.0
+          body: |
+            职途 · 自动化求职作战台 Android 安装包。
+
+            这是基于同一套 Web App 打包的 Android APK，可直接下载安装。
+          files: zhitu-career-copilot-android.apk
+          overwrite_files: true
+          make_latest: true
