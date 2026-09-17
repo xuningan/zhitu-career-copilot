@@ -64,3 +64,7 @@ Windows 下也可以双击 `启动求职台.cmd`。
 GitHub Actions 会自动构建 Android 安装包，构建完成后可在 Releases 页面下载：
 
 https://github.com/xuningan/zhitu-career-copilot/releases
+
+直接下载 APK：
+
+https://github.com/xuningan/zhitu-career-copilot/releases/download/android-v0.3.0/zhitu-career-copilot-android.apk
