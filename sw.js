@@ -1,6 +1,5 @@
-const CACHE_NAME = "zhitu-career-copilot-v0.3.1";
+const CACHE_NAME = "zhitu-career-copilot-v0.3.2";
 const APP_SHELL = [
-  "./",
   "./index.html",
   "./styles.css",
   "./engine.js",
