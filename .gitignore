@@ -3,3 +3,4 @@ career-copilot-backup-*.json
 .DS_Store
 Thumbs.db
 .gh-token
+*.apk
