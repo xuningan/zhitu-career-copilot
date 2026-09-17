@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1720">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon-128.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="职途">
+  <title>职途 · 自动化求职作战台</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">职</div>
+        <div>
+          <strong>职途</strong>
+          <span>自动化求职作战台</span>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="主导航">
+        <button class="nav-item active" data-view="dashboard">
+          <span class="nav-icon">⌂</span><span>总览</span>
+        </button>
+        <button class="nav-item" data-view="profile">
+          <span class="nav-icon">◎</span><span>能力档案</span>
+        </button>
+        <button class="nav-item" data-view="jobs">
+          <span class="nav-icon">□</span><span>岗位与匹配</span>
+        </button>
+        <button class="nav-item" data-view="company">
+          <span class="nav-icon">⌕</span><span>公司查询</span>
+        </button>
+        <button class="nav-item" data-view="resume">
+          <span class="nav-icon">▤</span><span>简历工坊</span>
+        </button>
+        <button class="nav-item" data-view="tracker">
+          <span class="nav-icon">▦</span><span>投递看板</span>
+        </button>
+        <button class="nav-item" data-view="interview">
+          <span class="nav-icon">◇</span><span>面试准备</span>
+        </button>
+        <button class="nav-item" data-view="ai">
+          <span class="nav-icon">✦</span><span>AI 面试</span>
+        </button>
+        <button class="nav-item" data-view="settings">
+          <span class="nav-icon">⚙</span><span>数据与设置</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="privacy-dot"></div>
+        <div>
+          <strong>本地优先</strong>
+          <span>数据不上传，随时可导出</span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobile-menu" aria-label="打开导航">☰</button>
+        <div class="topbar-title">
+          <p id="page-kicker">Personal Career Ops</p>
+          <h1 id="page-title">求职总览</h1>
+        </div>
+        <div class="topbar-actions">
+          <span class="today-chip" id="today-chip"></span>
+          <button class="btn btn-primary" data-action="add-job">＋ 录入岗位</button>
+        </div>
+      </header>
+
+      <main id="view" class="view" tabindex="-1"></main>
+    </section>
+  </div>
+
+  <div id="modal-root" class="modal-root" aria-hidden="true"></div>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <input id="import-file" type="file" accept=".json,application/json" hidden>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () {});
+      });
+    }
+  </script>
+</body>
+</html>
+
+

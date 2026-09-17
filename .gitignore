@@ -1,0 +1,5 @@
+career-copilot-backup-*.json
+*.zip
+.DS_Store
+Thumbs.db
+.gh-token

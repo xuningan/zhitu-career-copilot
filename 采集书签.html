@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>职途网页采集器</title>
+  <style>
+    :root { --ink:#12252e; --muted:#6d818a; --teal:#0d7e6c; --line:#d8e3e5; --bg:#f3f7f7; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:42px 20px; color:var(--ink); font-family:"Microsoft YaHei UI","Microsoft YaHei",sans-serif; background:radial-gradient(circle at 100% 0%,rgba(25,165,139,.1),transparent 32%),var(--bg); }
+    main { width:min(820px,100%); margin:auto; padding:34px; border:1px solid var(--line); border-radius:20px; background:white; box-shadow:0 20px 60px rgba(14,35,44,.1); }
+    h1 { margin:0 0 8px; font-size:28px; }
+    .lead { margin:0 0 28px; color:var(--muted); line-height:1.75; }
+    .bookmarklet { display:inline-block; padding:14px 22px; border-radius:12px; color:white; background:linear-gradient(145deg,#168f79,#0b6d5e); box-shadow:0 10px 24px rgba(13,126,108,.22); font-weight:800; text-decoration:none; cursor:grab; }
+    .steps { display:grid; gap:12px; margin-top:28px; }
+    .step { display:grid; grid-template-columns:34px minmax(0,1fr); gap:12px; padding:15px; border:1px solid var(--line); border-radius:12px; background:#fbfdfd; }
+    .num { width:30px; height:30px; display:grid; place-items:center; border-radius:9px; color:var(--teal); background:#dff5ef; font-weight:800; }
+    .step strong { display:block; margin-bottom:3px; }
+    .step p { margin:0; color:var(--muted); font-size:13px; line-height:1.65; }
+    .note { margin-top:22px; padding:14px; border:1px solid #edd6ad; border-radius:11px; color:#7e5619; background:#fff8eb; font-size:13px; line-height:1.7; }
+    code { padding:2px 5px; border-radius:5px; background:#eef3f3; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>职途网页采集器</h1>
+    <p class="lead">在招聘详情页主动点击采集按钮，把当前页面文字复制到剪贴板。它不会后台运行、不会登录你的账号，也不会绕过验证码或平台限制。</p>
+    <a class="bookmarklet" href="javascript:(()=>{const text=(document.body&&document.body.innerText?document.body.innerText:'').slice(0,40000);const h1=document.querySelector('h1');const payload={source:'职途采集',platform:location.hostname,url:location.href,title:document.title,jobTitle:h1?h1.innerText.trim():document.title,pageText:text,capturedAt:new Date().toISOString()};const data=JSON.stringify(payload);if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(data).then(()=>alert('已复制岗位信息。请回到职途，点击“从剪贴板导入”。')).catch(()=>prompt('自动复制失败，请复制下面的内容：',data));}else{prompt('请复制下面的内容：',data);}})()">职途采集</a>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><div><strong>显示浏览器书签栏</strong><p>在 Edge 或 Chrome 中按 <code>Ctrl + Shift + B</code>。</p></div></div>
+      <div class="step"><div class="num">2</div><div><strong>把上面的按钮拖到书签栏</strong><p>如果浏览器禁止拖动，可以新建书签，并把按钮链接复制为网址。</p></div></div>
+      <div class="step"><div class="num">3</div><div><strong>打开任意招聘岗位详情页</strong><p>包括 BOSS直聘、智联招聘、前程无忧、猎聘、实习僧等公开页面。</p></div></div>
+      <div class="step"><div class="num">4</div><div><strong>点击“职途采集”</strong><p>页面会复制岗位标题、链接和当前页面文字。</p></div></div>
+      <div class="step"><div class="num">5</div><div><strong>回到职途导入</strong><p>在“岗位与匹配”页面点击“从剪贴板导入”，核对公司和岗位后再保存。</p></div></div>
+    </div>
+    <div class="note">使用限制：不同招聘网站对页面复制和自动化有各自规则。本工具只在用户主动点击时读取当前页面文字，不提供自动登录、自动翻页、批量爬取或自动投递功能。</div>
+  </main>
+</body>
+</html>

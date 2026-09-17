@@ -1,0 +1,16 @@
+{
+  "name": "职途 · 自动化求职作战台",
+  "short_name": "职途",
+  "description": "自动化方向求职者的本地优先求职管理工具",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0B0B0C",
+  "theme_color": "#0B0B0C",
+  "icons": [
+    { "src": "assets/icon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "assets/icon-256.png", "sizes": "256x256", "type": "image/png" },
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
