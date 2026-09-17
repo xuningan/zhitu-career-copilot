@@ -1,0 +1,8 @@
+{
+  "appId": "com.zhitu.careercopilot",
+  "appName": "职途",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
