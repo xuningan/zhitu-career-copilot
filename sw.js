@@ -1,4 +1,4 @@
-const CACHE_NAME = "zhitu-career-copilot-v0.3.0";
+const CACHE_NAME = "zhitu-career-copilot-v0.3.1";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -8,7 +8,9 @@ const APP_SHELL = [
   "./manifest.webmanifest",
   "./assets/icon.svg",
   "./assets/icon-128.png",
+  "./assets/icon-192.png",
   "./assets/icon-256.png",
+  "./assets/icon-512.png",
   "./采集书签.html"
 ];
 
